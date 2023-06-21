@@ -1,0 +1,9 @@
+[user]
+email = izviagin@mtnhausdigital.com
+name = mtn-joe
+
+[github]
+user = "mtn-joe"
+
+[core]
+sshCommand = "ssh -i ~/.ssh/id_rsa_mtn-house"
