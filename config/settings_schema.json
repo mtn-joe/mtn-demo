@@ -17,5 +17,44 @@
         "default": "#000"
       }
     ]
+  },
+  {
+    "name": "Typography",
+    "settings": [
+      {
+        "type": "header",
+        "content": "Heading font styles"
+      },
+      {
+        "type": "font_picker",
+        "id": "header_text_font",
+        "label": "Font",
+        "default": "mono"
+      },
+      {
+        "type": "header",
+        "content": "Body font styles"
+      },
+      {
+        "type": "font_picker",
+        "id": "body_text_font",
+        "label": "Font",
+        "default": "mono"
+      },
+      {
+        "type": "header",
+        "content": "Body font sizes"
+      },
+      {
+        "type": "range",
+        "id": "body_font_size",
+        "label": "Font size",
+        "default": 16,
+        "unit": "px",
+        "min": 10,
+        "max": 25,
+        "step": 1
+      }
+    ]
   }
 ]

@@ -17,3 +17,38 @@ body {
   width: 100%;
   z-index: -1;
 }
+
+.login-form,
+.forgot-password-form {
+  width: 100%;
+  max-width: 300px;
+  margin: auto;
+}
+
+.dropup {
+  position: fixed;
+  bottom: 25px;
+  right: 25px;
+  display: inline-block;
+}
+
+.localeBtn {
+  background-color: cornflowerblue;
+  color: #fff;
+  padding: 6px;
+  font-size: 20px;
+  border-radius: 50%;
+}
+
+.dropup-content {
+  display: none;
+  position: absolute;
+  top: -1em;
+}
+
+.dropup:hover .dropup-content {
+  display: block;
+}
+.payment-types img {
+  max-width: 100px;
+}

@@ -1,0 +1,104 @@
+<footer class="footer-section bg-light py-5 mt-5">
+  <div class="container">
+    <div class="row row-cols-{{ section.settings.col_num }}">
+      {% for block in section.blocks %}
+        {% assign item = block.settings %}
+        {% if block.type == 'link_list' %}
+          <div class="col">
+            <h5>
+              {{ item.title }}
+            </h5>
+            {% assign footer_linklist = item.menu %}
+            <ul class="list-unstyled text-small">
+              {% for link in linklists[footer_linklist].links %}
+                <li>
+                  <a href="{{ link.url }}">{{ link.title | escape }}</a>
+                </li>
+              {% endfor %}
+            </ul>
+          </div>
+        {% elsif block.type == 'text' %}
+          <div class="col">
+            <img src="{{ item.logo }}" alt="" class="mb-5">
+            <h5>{{ item.title }}</h5>
+            <p>{{ item.description }}</p>
+          </div>
+        {% endif %}
+      {% endfor %}
+    </div>
+
+    {% if section.settings.enable_payment_icons %}
+      <div class="row d-flex justify-content-center payment-types">
+        {% for payment_type in shop.enabled_payment_types %}
+          <img src="{{ payment_type | payment_type_img_url }}" alt="">
+        {% endfor %}
+      </div>
+    {% endif %}
+  </div>
+</footer>
+
+{{ 'bootstrap.bundle.min.js' | asset_url | script_tag }}
+{{ 'application.js' | asset_url | script_tag }}
+
+{% schema %}
+{
+  "name": "Footer",
+  "settings": [
+    {
+      "type": "range",
+      "id": "col_num",
+      "default": 3,
+      "min": 2,
+      "max": 4,
+      "label": "Number of Columns"
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_payment_icons",
+      "label": "Enable payment type icons",
+      "default": true
+    }
+  ],
+  "blocks": [
+    {
+      "type": "link_list",
+      "name": "Navigation",
+      "settings": [
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title",
+          "default": "Quick Links"
+        },
+        {
+          "type": "link_list",
+          "id": "menu",
+          "label": "Menu"
+        }
+      ]
+    },
+    {
+      "type": "text",
+      "name": "Store details",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "logo",
+          "label": "Store Logo"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Heading",
+          "default": "Store information"
+        },
+        {
+          "type": "richtext",
+          "id": "description",
+          "label": "Text"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

@@ -45,6 +45,46 @@
   </div>
 </div>
 
+<div class="container">
+  <section id="product-recomendation" class="row content-justify-center my-5">
+    <div class="text-center">
+      <h1>You may also like this</h1>
+      <div class="product-recomendation__body row"></div>
+    </div>
+  </section>
+</div>
+
+<script>
+  let productRecomendationBody = document.querySelector('.product-recomendation__body');
+  fetch('/recommendations/products.js?product_id={{ product.id }}')
+    .then((resp) => resp.json())
+    .then(({ products }) => {
+      console.log(products);
+
+      let cards = '';
+      if (products.length) {
+        products.forEach((product, index) => {
+          let card;
+          let image = '';
+          if (product.images.length) {
+            image = `<img class='card-img-top' src='${product.images[0]}'>`;
+          }
+          card = `
+          <div class='col-3 g-2'>
+            <div class='card' style='width: 18rem;'>
+            ${image}
+              <div class='card-body'>
+                <h3><a href='${product.url}'>${product.title}</a></h3>
+              </div>
+            </div>
+          </div>`;
+          cards += card;
+        });
+        productRecomendationBody.innerHTML = cards;
+      }
+    });
+</script>
+
 {% schema %}
 {
   "name": "Product pages",
